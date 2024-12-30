@@ -1,13 +1,12 @@
-# Excel File Manipulation with OneDrive and Microsoft Graph API
+# File Manipulation with OneDrive and Microsoft Graph API
 
-This project demonstrates how to connect to a OneDrive account and update an Excel file using the Microsoft Graph API. The project includes Jupyter notebooks for reading and writing Excel files, as well as for authenticating and accessing OneDrive.
-
+This project demonstrates how to connect to a OneDrive account and update an Excel file using the Microsoft Graph API. The project includes a Django web application for reading and writing Excel files, as well as for authenticating and accessing OneDrive.
 
 ## Prerequisites
 
 - Python 3.x
-- Jupyter Notebook
-- Required Python libraries: `pandas`, `openpyxl`, `msal`, `requests`, `xlwings`
+- Django
+- Required Python libraries: `msal`, `requests`
 
 ## Setup
 
@@ -19,13 +18,13 @@ This project demonstrates how to connect to a OneDrive account and update an Exc
 
 2. **Install the required Python libraries**:
     ```sh
-    pip install pandas openpyxl msal requests xlwings
+    pip install django msal requests
     ```
 
 3. **Set up Microsoft Graph API**:
     - Register your app in the Azure portal to get the necessary credentials (client ID and secret).
     - Add the required API permissions (Files.ReadWrite.All, Sites.ReadWrite.All).
-    - Save your credentials in [credentials.json](http://_vscodecontentref_/7):
+    - Save your credentials in [credentials.json](http://_vscodecontentref_/1):
       ```json
       {
           "client_id": "your_client_id",
@@ -33,24 +32,42 @@ This project demonstrates how to connect to a OneDrive account and update an Exc
       }
       ```
 
-## Usage
+## Running the Django Application
 
-### Reading and Writing Excel Files
-
-The [trial.ipynb](http://_vscodecontentref_/8) notebook demonstrates how to read from and write to Excel files using `pandas` and `openpyxl`.
-
-### Connecting to OneDrive and Updating Excel Files
-
-The [run.ipynb](http://_vscodecontentref_/9) notebook demonstrates how to authenticate with OneDrive using the Microsoft Graph API and update an Excel file.
-
-1. **Run the Jupyter notebook server**:
+1. **Navigate to the Django template directory**:
     ```sh
-    jupyter notebook
+    cd vscode-python-templates/django-template
     ```
 
-2. **Open [run.ipynb](http://_vscodecontentref_/10)**:
-    - Follow the steps to authenticate with OneDrive and get an access token.
-    - Use the access token to access and update the Excel file in OneDrive.
+2. **Apply migrations**:
+    ```sh
+    python manage.py migrate
+    ```
+
+3. **Run the development server**:
+    ```sh
+    python manage.py runserver
+    ```
+
+4. **Access the application**:
+    Open your web browser and navigate to `http://localhost:8000`.
+
+## Usage
+
+### Reading and Updating Excel Files
+
+1. **Read Excel File**:
+    - Navigate to `http://localhost:8000/read_excel/` to read the value of a specific cell in the Excel file.
+
+2. **Update Excel File**:
+    - Navigate to `http://localhost:8000/update_excel/` to update the value of a specific cell in the Excel file.
+
+## Project Structure
+
+- [auth.py](http://_vscodecontentref_/2): Contains the authentication logic using MSAL.
+- [views.py](http://_vscodecontentref_/3): Contains the views for reading and updating the Excel file.
+- [read_excel.html](http://_vscodecontentref_/4): Template for displaying the cell value.
+- [update_excel.html](http://_vscodecontentref_/5): Template for updating the cell value.
 
 ## Resources
 

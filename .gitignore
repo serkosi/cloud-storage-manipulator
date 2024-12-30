@@ -1,3 +1,12 @@
-playing_around/
+# Ignore virtual environment
 .venv
+
+# Ignore unnecessary templates
+vscode-python-templates/data-science-template/
+vscode-python-templates/fastapi-template/
+vscode-python-templates/flask-template/
+vscode-python-templates/package-template/
+vscode-python-templates/script-template/
+
+playing_around/
 credentials.json
