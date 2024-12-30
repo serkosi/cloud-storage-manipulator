@@ -1,11 +1,19 @@
 import requests
+import json
+import os
 from django.shortcuts import render, redirect
 from .auth import get_access_token
+
+def get_file_path():
+    credentials_path = os.path.join(os.path.dirname(__file__), '..', '..', '..', 'credentials.json')
+    with open(credentials_path) as f:
+        credentials = json.load(f)
+    return credentials['file_path']
 
 def read_excel(request):
     access_token = get_access_token()
     print(f"Access Token: {access_token}")  # Debugging access token
-    file_path = '/Documents/_work/_employee/Logistik/Lieferando/file.xlsx'
+    file_path = get_file_path()
     workbook_url = f'https://graph.microsoft.com/v1.0/me/drive/root:{file_path}:/workbook/worksheets/Sheet1/range(address=\'A1\')'
 
     headers = {
@@ -28,7 +36,7 @@ def update_excel(request):
     if request.method == 'POST':
         new_value = request.POST['new_value']
         access_token = get_access_token()
-        file_path = '/Documents/_work/_employee/Logistik/Lieferando/file.xlsx'
+        file_path = get_file_path()
         update_url = f'https://graph.microsoft.com/v1.0/me/drive/root:{file_path}:/workbook/worksheets/Sheet1/range(address=\'A1\')'
 
         headers = {
