@@ -1,4 +1,4 @@
-# Excel File Manipulation with OneDrive and Microsoft Graph API
+# Document Manipulation with OneDrive and Microsoft Graph API
 
 This project demonstrates how to connect to a OneDrive account and update an Excel file using the Microsoft Graph API. The project includes a Django web application for reading and writing Excel files, as well as for authenticating and accessing OneDrive.
 
